@@ -46,10 +46,16 @@
                 <div>
                     @auth
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="mnuUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                            <a class="navbar-brand pr-5 dropdown-toggle" href="#" id="mnuUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
                             <div class="dropdown-menu" aria-labelledby="mnuUser">
                                 <a class="dropdown-item" href="{{url('/dashboard')}}">Meus dados</a>
-                                <a class="dropdown-item" href="#">Sair</a>
+                                <!-- Authenticação -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <button class="dropdown-item" onclick="event.preventDefault();
+                                    this.closest('form').submit();">Sair</button>
+                                </form>
                             </div>
                         </div>
                     @else
