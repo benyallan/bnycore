@@ -64,10 +64,7 @@
                         @if (!Auth::guard('administrador')->check())
                             <ul class="navbar-nav mr-auto">
                                 <a class="nav-link" href="{{ route('login') }}">Entrar</a>
-
-                                @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">Registrar</a>
-                                @endif
+                                <a class="nav-link" href="{{ route('register') }}">Registrar</a>
                             </ul>
                         @endif
                     @endauth
