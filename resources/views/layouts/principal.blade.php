@@ -38,9 +38,11 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(atual)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/administrador/dashboard')}}">Administrativo</a>
-            </li>
+            @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/administrador/dashboard')}}">Administrativo</a>
+                </li>
+            @endguest
             </ul>
             @if (Route::has('login'))
                 <div>
@@ -59,13 +61,15 @@
                             </div>
                         </div>
                     @else
-                        <ul class="navbar-nav mr-auto">
-                            <a class="nav-link" href="{{ route('login') }}">Entrar</a>
+                        @if (!Auth::guard('administrador')->check())
+                            <ul class="navbar-nav mr-auto">
+                                <a class="nav-link" href="{{ route('login') }}">Entrar</a>
 
-                            @if (Route::has('register'))
-                                <a class="nav-link" href="{{ route('register') }}">Registrar</a>
-                            @endif
-                        </ul>
+                                @if (Route::has('register'))
+                                    <a class="nav-link" href="{{ route('register') }}">Registrar</a>
+                                @endif
+                            </ul>
+                        @endif
                     @endauth
                 </div>
             @endif
