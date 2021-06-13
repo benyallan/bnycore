@@ -21,12 +21,13 @@
                             <i class="fa fa-lg fa-fw fa-eye"></i>
                         </button>';
 
+            foreach ($funcionarios as $funcionario) {
+                $data = [
+                    [$funcionario->id, $funcionario->name, $funcionario->email, '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+                ];
+            }
             $config = [
-                'data' => [
-                    [22, 'John Bender', '+02 (123) 123456789', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-                    [19, 'Sophia Clemens', '+99 (987) 987654321', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-                    [3, 'Peter Sousa', '+69 (555) 12367345243', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-                ],
+                'data' => $data,
                 'order' => [[1, 'asc']],
                 'columns' => [null, null, null, ['orderable' => false]],
             ];

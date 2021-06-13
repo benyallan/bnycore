@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Administrador\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,5 @@ require __DIR__.'/auth.php';
 
 Route::multiauth('Administrador', 'administrador');
 Route::prefix('administrador')->group(function () {
-    Route::get('/funcionarios', function () {
-        return view('administrador.funcionarios.funcionarios');
-    });
+    Route::get('/funcionarios', [DashboardController::class, 'funcionariosIndex']);
 });
