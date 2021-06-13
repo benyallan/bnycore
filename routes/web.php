@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Administrador\DashboardController;
+use App\Http\Controllers\Administrador\{DashboardController, ClienteController};
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +27,5 @@ require __DIR__.'/auth.php';
 Route::multiauth('Administrador', 'administrador');
 Route::prefix('administrador')->group(function () {
     Route::get('/funcionarios', [DashboardController::class, 'funcionariosIndex']);
+    Route::get('/clientes', [ClienteController::class, 'Index']);
 });

@@ -249,13 +249,13 @@ return [
 
         [
             'text' => 'Funcionários',
-            'url' => '#',
+            'url' => 'administrador/funcionarios',
             'icon' => 'fas fa-fw fa-id-card'
         ],
 
         [
             'text' => 'Clientes',
-            'url' => '#',
+            'url' => 'administrador/clientes',
             'icon' => 'fas fa-fw fa-address-book'
         ],
 

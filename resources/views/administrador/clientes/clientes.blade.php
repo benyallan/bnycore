@@ -21,9 +21,9 @@
                             <i class="fa fa-lg fa-fw fa-eye"></i>
                         </button>';
 
-            foreach ($funcionarios as $funcionario) {
+            foreach ($clientes as $cliente) {
                 $data = [
-                    [$funcionario->id, $funcionario->name, $funcionario->email, '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+                    [$cliente->id, $cliente->name, $cliente->email, '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
                 ];
             }
             $config = [
