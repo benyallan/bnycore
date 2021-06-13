@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-    <div>
-        Você está logado como administrador
+    <div class="container">
+        Painel de adminnistração
     </div>
 @endsection

@@ -24,3 +24,8 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::multiauth('Administrador', 'administrador');
+Route::prefix('administrador')->group(function () {
+    Route::get('/funcionarios', function () {
+        return view('administrador.funcionarios.funcionarios');
+    });
+});
