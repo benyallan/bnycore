@@ -28,7 +28,10 @@ Route::multiauth('Administrador', 'administrador');
 
 Route::prefix('administrador')->group(function () {
     Route::middleware(['auth:administrador'])->group(function () {
-        Route::get('/funcionarios', [DashboardController::class, 'funcionariosIndex']);
+        Route::get('/funcionarios', [DashboardController::class, 'funcionariosIndex'])->name('funcionarios');
+        Route::get('/funcionarios/novo', [DashboardController::class, 'create'])->name('funcionarios.novo');
+
         Route::get('/clientes', [ClienteController::class, 'Index']);
+
     });
 });

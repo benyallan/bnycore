@@ -24,4 +24,9 @@ class DashboardController extends Controller
         $funcionarios = Administrador::all();
         return view('administrador.funcionarios.funcionarios', compact('funcionarios'));
     }
+
+    public function create()
+    {
+        return view('administrador.funcionarios.novo');
+    }
 }
