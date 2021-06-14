@@ -21,16 +21,26 @@
                             <i class="fa fa-lg fa-fw fa-eye"></i>
                         </button>';
 
-            foreach ($clientes as $cliente) {
-                $data = [
-                    [$cliente->id, $cliente->name, $cliente->email, '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+            if (!empty(Arr::first($clientes))) {
+                foreach ($clientes as $cliente) {
+                    $data = [
+                        [$cliente->id, $cliente->name, $cliente->email, '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+                    ];
+                }
+                $config = [
+                    'data' => $data,
+                    'order' => [[1, 'asc']],
+                    'columns' => [null, null, null, ['orderable' => false]],
+                ];
+            } else {
+                $config = [
+                    'data' => [
+                        ['', 'Não há clientes cadastrados', '', ''],
+                    ],
+                    'order' => [[1, 'asc']],
+                    'columns' => [null, null, null, ['orderable' => false]],
                 ];
             }
-            $config = [
-                'data' => $data,
-                'order' => [[1, 'asc']],
-                'columns' => [null, null, null, ['orderable' => false]],
-            ];
         @endphp
 
         {{-- Dados de exemplo / preenchimento mínimos usando o slot de componente --}}
