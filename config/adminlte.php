@@ -261,6 +261,11 @@ return [
                      'route' => 'funcionarios' ,
                      'icon'   => 'fas fa-users' ,
                 ],
+                [
+                    'text'   => 'Funções' ,
+                     'route' => 'funcionarios' ,
+                     'icon'   => 'fas fa-briefcase' ,
+                ],
             ],
         ],
 

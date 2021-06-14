@@ -32,6 +32,6 @@ Route::prefix('administrador')->group(function () {
         Route::get('/funcionarios/novo', [DashboardController::class, 'create'])->name('funcionarios.novo');
 
         Route::get('/clientes', [ClienteController::class, 'Index']);
-
+        Route::get('/funcoes', [ClienteController::class, 'Index']);
     });
 });
