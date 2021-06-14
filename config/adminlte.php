@@ -187,13 +187,13 @@ return [
     |
     */
 
-    'use_route_url' => false,
-    'dashboard_url' => 'administrador/dashboard',
-    'logout_url' => 'administrador/logout',
-    'login_url' => 'administrador/login',
-    'register_url' => 'administrador/register',
-    'password_reset_url' => 'administrador/password/reset',
-    'password_email_url' => 'administrador/password/email',
+    'use_route_url' => true,
+    'dashboard_url' => 'administrador.dashboard',
+    'logout_url' => 'administrador.logout',
+    'login_url' => 'administrador.login',
+    'register_url' => 'administrador.register',
+    'password_reset_url' => 'administrador.password.reset',
+    'password_email_url' => 'administrador.password.email',
     'profile_url' => false,
 
     /*
@@ -249,8 +249,19 @@ return [
 
         [
             'text' => 'Funcionários',
-            'url' => 'administrador/funcionarios',
-            'icon' => 'fas fa-fw fa-id-card'
+            'icon' => 'fas fa-fw fa-id-card',
+            'submenu' => [
+                [
+                    'text' => 'novo' ,
+                    'route' => 'funcionarios.novo',
+                    'icon' => 'fas fa-user-plus',
+                ],
+                [
+                    'text'   => 'Lista' ,
+                     'route' => 'funcionarios' ,
+                     'icon'   => 'fas fa-users' ,
+                ],
+            ],
         ],
 
         [
