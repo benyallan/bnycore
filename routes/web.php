@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Administrador\{DashboardController, ClienteController};
+use App\Http\Controllers\Administrador\{DashboardController, ClienteController, RoleController};
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +32,6 @@ Route::prefix('administrador')->group(function () {
         Route::get('/funcionarios/novo', [DashboardController::class, 'create'])->name('funcionarios.novo');
 
         Route::get('/clientes', [ClienteController::class, 'Index']);
-        Route::get('/funcoes', [ClienteController::class, 'Index']);
+        Route::get('/funcoes', [RoleController::class, 'Index'])->name('roles.index');
     });
 });

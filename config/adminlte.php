@@ -263,7 +263,7 @@ return [
                 ],
                 [
                     'text'   => 'Funções' ,
-                     'route' => 'funcionarios' ,
+                     'route' => 'roles.index' ,
                      'icon'   => 'fas fa-briefcase' ,
                 ],
             ],
