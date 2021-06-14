@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Administrador;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class CreateadministradorsTable extends Migration
 {
@@ -29,6 +30,10 @@ class CreateadministradorsTable extends Migration
         $admin->email = "admin@teste.com";
         $admin->password = Hash::make("admin123");
         $admin->save();
+
+        $role = Role::create(['guard_name' => 'administrador', 'name' => 'super-admin']);
+        $admin->assignRole($role);
+
     }
 
     /**
