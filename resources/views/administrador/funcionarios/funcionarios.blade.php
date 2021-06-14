@@ -32,6 +32,7 @@
                 'columns' => [null, null, null, ['orderable' => false]],
             ];
         @endphp
+
         <div class="container m-1 text-right">
             <a href="{{ route('funcionarios.novo') }}">
                 <x-adminlte-button label="Adicionar funcionário" theme="primary" icon="fas fa-user-plus"/>

@@ -252,11 +252,6 @@ return [
             'icon' => 'fas fa-fw fa-id-card',
             'submenu' => [
                 [
-                    'text' => 'novo' ,
-                    'route' => 'funcionarios.novo',
-                    'icon' => 'fas fa-user-plus',
-                ],
-                [
                     'text'   => 'Lista' ,
                      'route' => 'funcionarios' ,
                      'icon'   => 'fas fa-users' ,

@@ -39,6 +39,18 @@
             }
         @endphp
 
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+
+        <div class="container m-1 text-right">
+            <a href="{{ route('roles.create') }}">
+                <x-adminlte-button label="Adicionar função" theme="primary" icon="fas fa-user-plus"/>
+            </a>
+        </div>
+
         {{-- Dados de exemplo / preenchimento mínimos usando o slot de componente --}}
         <x-adminlte-datatable id="table1" :heads="$heads" head-theme="dark" theme="light" striped hoverable with-buttons>
             @foreach($config['data'] as $row)
