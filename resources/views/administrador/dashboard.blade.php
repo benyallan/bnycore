@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container">
-        Painel de adminnistração
+        Painel de administração
     </div>
 @endsection
