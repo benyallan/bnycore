@@ -25,7 +25,10 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::multiauth('Administrador', 'administrador');
+
 Route::prefix('administrador')->group(function () {
-    Route::get('/funcionarios', [DashboardController::class, 'funcionariosIndex']);
-    Route::get('/clientes', [ClienteController::class, 'Index']);
+    Route::middleware(['auth:administrador'])->group(function () {
+        Route::get('/funcionarios', [DashboardController::class, 'funcionariosIndex']);
+        Route::get('/clientes', [ClienteController::class, 'Index']);
+    });
 });
