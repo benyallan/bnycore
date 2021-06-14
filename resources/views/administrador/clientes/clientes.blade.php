@@ -53,10 +53,5 @@
                 </tr>
             @endforeach
         </x-adminlte-datatable>
-
-        {{-- Compactado com opções de estilo / dados de preenchimento usando a configuração do plugin --}}
-        <x-adminlte-datatable id="table2" :heads="$heads" head-theme="dark" :config="$config"
-            striped hoverable bordered compressed/>
-
     </div>
 @endsection
