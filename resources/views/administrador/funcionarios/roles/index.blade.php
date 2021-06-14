@@ -6,8 +6,7 @@
         @php
             $heads = [
                 'ID',
-                'Nome',
-                ['label' => 'E-mail', 'width' => 40],
+                'Função',
                 ['label' => 'Ações', 'no-export' => true, 'width' => 5],
             ];
 
@@ -17,14 +16,11 @@
             $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Apagar">
                             <i class="fa fa-lg fa-fw fa-trash"></i>
                         </button>';
-            $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalhes">
-                            <i class="fa fa-lg fa-fw fa-eye"></i>
-                        </button>';
 
             if (!empty(Arr::first($roles))) {
                 foreach ($roles as $role) {
                     $data = [
-                        [$role->id, $role->name, $role->email, '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+                        [$role->id, $role->name, '<nobr>'.$btnEdit.$btnDelete.'</nobr>'],
                     ];
                 }
                 $config = [
@@ -35,7 +31,7 @@
             } else {
                 $config = [
                     'data' => [
-                        ['', 'Não há funções cadastradas', '', ''],
+                        ['', 'Não há funções cadastradas', ''],
                     ],
                     'order' => [[1, 'asc']],
                     'columns' => [null, null, null, ['orderable' => false]],
