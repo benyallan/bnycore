@@ -31,7 +31,7 @@ class CreateadministradorsTable extends Migration
         $admin->password = Hash::make("admin123");
         $admin->save();
 
-        $role = Role::create(['guard_name' => 'administrador', 'name' => 'super-admin']);
+        $role = Role::create(['guard_name' => 'administrador', 'name' => 'Super-Admin']);
         $admin->assignRole($role);
 
     }

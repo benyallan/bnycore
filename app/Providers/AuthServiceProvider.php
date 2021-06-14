@@ -25,6 +25,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Conceda implicitamente a função de "Super Admin" todas as verificações de permissão usando can()
+        Gate::before(function ($user, $ability) {
+                if ($user->hasRole('Super-Admin')) {
+                    return true;
+                }
+            });
     }
 }
