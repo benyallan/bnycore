@@ -12,6 +12,7 @@
         "jeroennoten/laravel-adminlte": "^3.6",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
+        "snapappointments/bootstrap-select": "^1.13",
         "spatie/laravel-permission": "^4.2"
     },
     "require-dev": {
