@@ -18,7 +18,7 @@ class RoleController extends Controller
 
     function __construct()
     {
-         $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:listar funções|role-create|role-edit|role-delete', ['only' => ['index','store']]);
          $this->middleware('permission:role-create', ['only' => ['create','store']]);
          $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:role-delete', ['only' => ['destroy']]);
@@ -61,7 +61,7 @@ class RoleController extends Controller
             'permission' => 'required',
         ]);
 
-        $role = Role::create(['name' => $request->input('name')]);
+        $role = Role::create(['guard_name' => 'administrador', 'name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')

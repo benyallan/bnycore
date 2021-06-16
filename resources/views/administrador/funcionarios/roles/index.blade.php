@@ -17,12 +17,13 @@
                             <i class="fa fa-lg fa-fw fa-trash"></i>
                         </button>';
 
+            $dados = '';
             if (!empty(Arr::first($roles))) {
+                $data = array();
                 foreach ($roles as $role) {
-                    $data = [
-                        [$role->id, $role->name, '<nobr>'.$btnEdit.$btnDelete.'</nobr>'],
-                    ];
+                    $data[] = [$role->id, $role->name, '<nobr>'.$btnEdit.$btnDelete.'</nobr>'];
                 }
+                $dados = $data;
                 $config = [
                     'data' => $data,
                     'order' => [[1, 'asc']],

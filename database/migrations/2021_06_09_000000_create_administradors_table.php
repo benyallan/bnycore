@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\Administrador;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class CreateadministradorsTable extends Migration
 {
@@ -34,6 +35,31 @@ class CreateadministradorsTable extends Migration
         $role = Role::create(['guard_name' => 'administrador', 'name' => 'Super-Admin']);
         $admin->assignRole($role);
 
+        $permissions = [
+            'listar funções',
+            'criar funções',
+            'editar funções',
+            'apagar funções',
+            'editar permissões das funções',
+            'listar funcionários',
+            'criar funcionários',
+            'editar funcionários',
+            'apagar funcionários',
+            'editar funções dos funcionários',
+            'resetar senha dos funcionários',
+            'atribuir senha aos funcionários',
+            'listar clientes',
+            'criar clientes',
+            'editar clientes',
+            'apagar clientes',
+            'resetar-senha dos clientes',
+        ];
+
+        foreach ($permissions as $permission) {
+            Permission::create(['guard_name' => 'administrador', 'name' => $permission]);
+        }
+
+        $role->syncPermissions($permissions);
     }
 
     /**
