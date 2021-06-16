@@ -10,34 +10,28 @@
                 ['label' => 'Ações', 'no-export' => true, 'width' => 5],
             ];
 
-            $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                            <i class="fa fa-lg fa-fw fa-pen"></i>
-                        </button>';
             $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Apagar">
                             <i class="fa fa-lg fa-fw fa-trash"></i>
                         </button>';
 
-            $rota = route('roles.show', 1);
-            $btnDetails = "<a href='$rota'>
-                                <button class='btn btn-xs btn-default text-teal mx-1 shadow' title='Detalhes'>
-                                    <i class='fa fa-lg fa-fw fa-eye'></i>
-                                </button>
-                            </a>";
-
-            $dados = '';
             if (!empty(Arr::first($roles))) {
                 $data = array();
                 foreach ($roles as $role) {
-                    $rota = route('roles.show', $role->id);
+                    $ver = route('roles.show', $role->id);
+                    $editar = route('roles.editar', $role->id);
                     $data[] = [$role->id, $role->name, '<nobr>'.
-                        "<a href='$rota'>
-                                <button class='btn btn-xs btn-default text-teal mx-1 shadow' title='Detalhes'>
-                                    <i class='fa fa-lg fa-fw fa-eye'></i>
-                                </button>
-                            </a>"
-                        .$btnEdit.$btnDelete.'</nobr>'];
+                        "<a href='$ver'>
+                            <button class='btn btn-xs btn-default text-teal mx-1 shadow' title='Detalhes'>
+                                <i class='fa fa-lg fa-fw fa-eye'></i>
+                            </button>
+                        </a>".
+                        "<a href='$editar'>
+                            <button class='btn btn-xs btn-default text-primary mx-1 shadow' title='Editar'>
+                                <i class='fa fa-lg fa-fw fa-pen'></i>
+                            </button>
+                        </a>"
+                        .$btnDelete.'</nobr>'];
                 }
-                $dados = $data;
                 $config = [
                     'data' => $data,
                     'order' => [[1, 'asc']],

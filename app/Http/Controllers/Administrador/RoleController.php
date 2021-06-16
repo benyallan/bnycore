@@ -98,7 +98,7 @@ class RoleController extends Controller
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
 
-        return view('roles.edit',compact('role','permission','rolePermissions'));
+        return view('administrador.funcionarios.roles.editar',compact('role','permission','rolePermissions'));
     }
 
     /**
