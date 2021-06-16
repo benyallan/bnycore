@@ -17,11 +17,25 @@
                             <i class="fa fa-lg fa-fw fa-trash"></i>
                         </button>';
 
+            $rota = route('roles.show', 1);
+            $btnDetails = "<a href='$rota'>
+                                <button class='btn btn-xs btn-default text-teal mx-1 shadow' title='Detalhes'>
+                                    <i class='fa fa-lg fa-fw fa-eye'></i>
+                                </button>
+                            </a>";
+
             $dados = '';
             if (!empty(Arr::first($roles))) {
                 $data = array();
                 foreach ($roles as $role) {
-                    $data[] = [$role->id, $role->name, '<nobr>'.$btnEdit.$btnDelete.'</nobr>'];
+                    $rota = route('roles.show', $role->id);
+                    $data[] = [$role->id, $role->name, '<nobr>'.
+                        "<a href='$rota'>
+                                <button class='btn btn-xs btn-default text-teal mx-1 shadow' title='Detalhes'>
+                                    <i class='fa fa-lg fa-fw fa-eye'></i>
+                                </button>
+                            </a>"
+                        .$btnEdit.$btnDelete.'</nobr>'];
                 }
                 $dados = $data;
                 $config = [

@@ -52,7 +52,7 @@ class CreateadministradorsTable extends Migration
             'criar clientes',
             'editar clientes',
             'apagar clientes',
-            'resetar-senha dos clientes',
+            'resetar senha dos clientes',
         ];
 
         foreach ($permissions as $permission) {

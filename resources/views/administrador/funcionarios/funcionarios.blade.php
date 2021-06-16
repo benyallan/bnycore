@@ -17,13 +17,14 @@
             $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Apagar">
                             <i class="fa fa-lg fa-fw fa-trash"></i>
                         </button>';
+
             $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalhes">
                             <i class="fa fa-lg fa-fw fa-eye"></i>
                         </button>';
 
             foreach ($funcionarios as $funcionario) {
                 $data = [
-                    [$funcionario->id, $funcionario->name, $funcionario->email, '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+                    [$funcionario->id, $funcionario->name, $funcionario->email, '<nobr>'.$btnDetails.$btnEdit.$btnDelete.'</nobr>'],
                 ];
             }
             $config = [
