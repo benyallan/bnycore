@@ -10,24 +10,29 @@
                 fgroup-class="col-md-6" disable-feedback/>
         </div>
 
-        @php
-            $config = [
-                "placeholder" => "Selecione as permissões...",
-                "allowClear" => true,
-                'closeOnSelect' => false,
-            ];
-        @endphp
-        <x-adminlte-select2 id="permission" name="permission[]" label="Permissões"
-        label-class="text-danger" igroup-size="sm" :config="$config" multiple>
-        <x-slot name="prependSlot">
-            <div class="input-group-text bg-gradient-red">
-                <i class="fas fa-tag"></i>
-            </div>
-        </x-slot>
-        @foreach ($permission as $key)
-            <option>{{$key->name}}</option>
-        @endforeach
-        </x-adminlte-select2>
+        <select name="permission[]" data-actions-box="true" class="selectpicker" data-width="100%" multiple title="Escolha as permissões..." data-style="btn-info">
+            <optgroup label="Funções">
+              @foreach ($permission as $key)
+                    @if (Str::contains($key->name, 'funções') && !Str::contains($key->name, 'funcionários'))
+                        <option value="{{$key->id}}">{{$key->name}}</option>
+                    @endif
+              @endforeach
+            </optgroup>
+            <optgroup label="Funcionários">
+                @foreach ($permission as $key)
+                  @if (Str::contains($key->name, 'funcionários'))
+                    <option value="{{$key->id}}">{{$key->name}}</option>
+                  @endif
+              @endforeach
+            </optgroup>
+            <optgroup label="Clientes">
+                @foreach ($permission as $key)
+                  @if (Str::contains($key->name, 'clientes'))
+                    <option value="{{$key->id}}">{{$key->name}}</option>
+                  @endif
+              @endforeach
+              </optgroup>
+          </select>
         <x-adminlte-button label="Criar" type="submit" theme="success" icon="fas fa-plus-square"/>
     </form>
 </div>
