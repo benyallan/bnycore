@@ -2,9 +2,9 @@
 
 @section('content')
 
-<form action="" method="post">
-    {{-- With prepend slot --}}
-    <x-adminlte-input name="role" label="Função" placeholder="{{$role->name}}" label-class="text-lightblue">
+<form action="{{route('roles.alterar', $role->id)}}" method="post">
+    @csrf
+    <x-adminlte-input name="name" label="Função" value="{{$role->name}}" label-class="text-lightblue" placeholder="Digite o nome da função...">
         <x-slot name="prependSlot">
             <div class="input-group-text">
                 <i class="fas fa-briefcase text-lightblue"></i>
@@ -12,29 +12,31 @@
         </x-slot>
     </x-adminlte-input>
 
-    <select data-actions-box="true" class="selectpicker" data-width="100%" multiple title="Escolha as permissões..." data-style="btn-info">
+    <select name="permission[]" data-actions-box="true" class="selectpicker" data-width="100%" multiple title="Escolha as permissões..." data-style="btn-info">
         <optgroup label="Funções">
           @foreach ($permission as $key)
-              @if (Str::contains($key->name, 'funções') && !Str::contains($key->name, 'funcionários'))
-                <option>{{$key->name}}</option>
-              @endif
+                @if (Str::contains($key->name, 'funções') && !Str::contains($key->name, 'funcionários'))
+                    <option value="{{$key->id}}" {{ in_array($key->id, $rolePermissions, true) ? 'selected' : '' }} >{{$key->name}}</option>
+                @endif
           @endforeach
         </optgroup>
         <optgroup label="Funcionários">
             @foreach ($permission as $key)
               @if (Str::contains($key->name, 'funcionários'))
-                <option>{{$key->name}}</option>
+                <option value="{{$key->id}}" {{ in_array($key->id, $rolePermissions, true) ? 'selected' : '' }} >{{$key->name}}</option>
               @endif
           @endforeach
         </optgroup>
         <optgroup label="Clientes">
             @foreach ($permission as $key)
               @if (Str::contains($key->name, 'clientes'))
-                <option>{{$key->name}}</option>
+                <option value="{{$key->id}}" {{ in_array($key->id, $rolePermissions, true) ? 'selected' : '' }} >{{$key->name}}</option>
               @endif
           @endforeach
           </optgroup>
       </select>
+      <div class="form-row m-1">
+        <x-adminlte-button class="btn-flat" type="submit" label="Salvar" theme="success" icon="fas fa-lg fa-save"/>
+      </div>
 </form>
-
 @endsection

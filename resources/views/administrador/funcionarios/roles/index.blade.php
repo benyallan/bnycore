@@ -10,27 +10,30 @@
                 ['label' => 'Ações', 'no-export' => true, 'width' => 5],
             ];
 
-            $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Apagar">
-                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                        </button>';
-
             if (!empty(Arr::first($roles))) {
                 $data = array();
                 foreach ($roles as $role) {
+                    $token = csrf_token();
                     $ver = route('roles.show', $role->id);
                     $editar = route('roles.editar', $role->id);
-                    $data[] = [$role->id, $role->name, '<nobr>'.
-                        "<a href='$ver'>
+                    $apagar = route('roles.apagar', $role->id);
+                    $data[] = [$role->id, $role->name,
+                        "<span style='white-space: nowrap; flex-wrap: nowrap;'><a href='$ver'>
                             <button class='btn btn-xs btn-default text-teal mx-1 shadow' title='Detalhes'>
                                 <i class='fa fa-lg fa-fw fa-eye'></i>
                             </button>
-                        </a>".
-                        "<a href='$editar'>
+                        </a>
+                        <a href='$editar'>
                             <button class='btn btn-xs btn-default text-primary mx-1 shadow' title='Editar'>
                                 <i class='fa fa-lg fa-fw fa-pen'></i>
                             </button>
-                        </a>"
-                        .$btnDelete.'</nobr>'];
+                        </a>
+                        <form action='$apagar' method='post'>
+                            <button class='btn btn-xs btn-default text-danger mx-1 shadow' title='Apagar' type='submit'>
+                                <i class='fa fa-lg fa-fw fa-trash'></i>
+                            </button>
+                            <input type='hidden' name='_token' value='$token'>
+                        </form></span>"];
                 }
                 $config = [
                     'data' => $data,

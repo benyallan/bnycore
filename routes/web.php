@@ -37,5 +37,7 @@ Route::prefix('administrador')->group(function () {
         Route::post('/funcoes/nova', [RoleController::class, 'store'])->name('roles.store');
         Route::get('/funcoes/ver/{id}', [RoleController::class, 'show'])->name('roles.show');
         Route::get('/funcoes/editar/{id}', [RoleController::class, 'edit'])->name('roles.editar');
+        Route::post('/funcoes/editar/{id}', [RoleController::class, 'update'])->name('roles.alterar');
+        Route::post('/funcoes/apagar/{id}', [RoleController::class, 'destroy'])->name('roles.apagar');
     });
 });
