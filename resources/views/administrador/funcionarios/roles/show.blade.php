@@ -2,6 +2,11 @@
 
 @section('content')
 <h1>{{$role->name}}</h1>
+<div class="row mt-2">
+    <a href="{{route('roles.index')}}">
+        <x-adminlte-button label="Voltar" type="button" theme="primary" icon="fas fa-chevron-circle-left"/>
+    </a>
+</div>
     @php
         $heads = [
             'permissão',

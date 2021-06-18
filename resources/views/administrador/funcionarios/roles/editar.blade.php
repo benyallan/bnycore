@@ -2,6 +2,11 @@
 
 @section('content')
 
+<div class="row mt-2">
+    <a href="{{route('roles.index')}}">
+        <x-adminlte-button label="Voltar" type="button" theme="primary" icon="fas fa-chevron-circle-left"/>
+    </a>
+</div>
 <form action="{{route('roles.alterar', $role->id)}}" method="post">
     @csrf
     <x-adminlte-input name="name" label="Função" value="{{$role->name}}" label-class="text-lightblue" placeholder="Digite o nome da função...">
