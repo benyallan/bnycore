@@ -36,7 +36,14 @@ Route::prefix('administrador')->group(function () {
         Route::post('/funcionarios/editar/{id}', [DashboardController::class, 'update'])->name('funcionarios.atualizar');
         Route::post('/funcionarios/apagar/{id}', [DashboardController::class, 'destroy'])->name('funcionarios.apagar');
 
-        Route::get('/clientes', [ClienteController::class, 'Index']);
+        Route::get('/clientes', [ClienteController::class, 'Index'])->name('clientes');
+        Route::get('/clientes/novo', [ClienteController::class, 'create'])->name('clientes.criar');
+        Route::post('/clientes/novo', [ClienteController::class, 'store'])->name('clientes.salvar');
+        Route::get('/clientes/ver/{id}', [ClienteController::class, 'show'])->name('clientes.ver');
+        Route::get('/clientes/editar/{id}', [ClienteController::class, 'edit'])->name('clientes.editar');
+        Route::post('/clientes/editar/{id}', [ClienteController::class, 'update'])->name('clientes.atualizar');
+        Route::post('/clientes/apagar/{id}', [ClienteController::class, 'destroy'])->name('clientes.apagar');
+
         Route::get('/funcoes', [RoleController::class, 'Index'])->name('roles.index');
         Route::get('/funcoes/nova', [RoleController::class, 'create'])->name('roles.create');
         Route::post('/funcoes/nova', [RoleController::class, 'store'])->name('roles.store');

@@ -23,9 +23,29 @@
 
             if (!empty(Arr::first($clientes))) {
                 foreach ($clientes as $cliente) {
-                    $data = [
-                        [$cliente->id, $cliente->name, $cliente->email, '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-                    ];
+                    $token = csrf_token();
+                    $ver = route('clientes.ver', $cliente->id);
+                    $editar = route('clientes.editar', $cliente->id);
+                    $apagar = route('clientes.apagar', $cliente->id);
+                    $data[] = [
+                    $cliente->id, $cliente->name, $cliente->email,
+                    "<span style='white-space: nowrap; flex-wrap: nowrap;'><a href='$ver'>
+                            <button class='btn btn-xs btn-default text-teal mx-1 shadow' title='Detalhes'>
+                                <i class='fa fa-lg fa-fw fa-eye'></i>
+                            </button>
+                        </a>
+                        <a href='$editar'>
+                            <button class='btn btn-xs btn-default text-primary mx-1 shadow' title='Editar'>
+                                <i class='fa fa-lg fa-fw fa-pen'></i>
+                            </button>
+                        </a>
+                        <form action='$apagar' method='post'>
+                            <button class='btn btn-xs btn-default text-danger mx-1 shadow' title='Apagar' type='submit'>
+                                <i class='fa fa-lg fa-fw fa-trash'></i>
+                            </button>
+                            <input type='hidden' name='_token' value='$token'>
+                        </form></span>"
+                ];
                 }
                 $config = [
                     'data' => $data,
@@ -42,6 +62,12 @@
                 ];
             }
         @endphp
+
+        <div class="container m-1 text-right">
+            <a href="{{ route('clientes.criar') }}">
+                <x-adminlte-button label="Adicionar cliente" theme="primary" icon="fas fa-user-plus"/>
+            </a>
+        </div>
 
         {{-- Dados de exemplo / preenchimento mínimos usando o slot de componente --}}
         <x-adminlte-datatable id="table1" :heads="$heads" head-theme="dark" theme="light" striped hoverable with-buttons>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Administrador;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Arr;
 
 class ClienteController extends Controller
 {
@@ -26,7 +28,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('administrador.clientes.novo');
     }
 
     /**
@@ -37,7 +39,19 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+        ]);
+
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+
+        User::create($input);
+
+        return redirect()->route('clientes')
+                        ->with('success','Cliente criado com sucesso!');
     }
 
     /**
@@ -48,7 +62,8 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $cliente = User::find($id);
+        return view('administrador.clientes.ver',compact('cliente'));
     }
 
     /**
@@ -59,7 +74,8 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = User::find($id);
+        return view('administrador.clientes.editar',compact('cliente'));
     }
 
     /**
@@ -71,7 +87,24 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => 'same:confirm-password',
+        ]);
+
+        $input = $request->all();
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = Arr::except($input,array('password'));
+        }
+
+        $cliente = User::find($id);
+        $cliente->update($input);
+
+        return redirect()->route('clientes')
+                        ->with('success','Cliente atualizado com sucesso!');
     }
 
     /**
@@ -82,6 +115,8 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return redirect()->route('clientes')
+                        ->with('success','Cliente apagado com sucesso!');
     }
 }
