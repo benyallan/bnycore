@@ -243,13 +243,13 @@ return [
         ],
 
         [
-            'text' => 'Funcionários',
-            'icon' => 'fas fa-fw fa-id-card',
+            'text' => 'Gestão de pessoas',
+            'icon' => 'fas fa-users',
             'submenu' => [
                 [
-                    'text'   => 'Lista' ,
+                    'text'   => 'Funcionários' ,
                      'route' => 'funcionarios' ,
-                     'icon'   => 'fas fa-users' ,
+                     'icon'   => 'fas fa-fw fa-id-card' ,
                 ],
                 [
                     'text'   => 'Funções' ,

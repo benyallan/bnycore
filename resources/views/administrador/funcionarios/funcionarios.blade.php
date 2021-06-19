@@ -23,8 +23,28 @@
                         </button>';
 
             foreach ($funcionarios as $funcionario) {
-                $data = [
-                    [$funcionario->id, $funcionario->name, $funcionario->email, '<nobr>'.$btnDetails.$btnEdit.$btnDelete.'</nobr>'],
+                $token = csrf_token();
+                $ver = route('funcionarios.ver', $funcionario->id);
+                $editar = route('funcionarios.editar', $funcionario->id);
+                $apagar = route('funcionarios.apagar', $funcionario->id);
+                $data[] = [
+                    $funcionario->id, $funcionario->name, $funcionario->email,
+                    "<span style='white-space: nowrap; flex-wrap: nowrap;'><a href='$ver'>
+                            <button class='btn btn-xs btn-default text-teal mx-1 shadow' title='Detalhes'>
+                                <i class='fa fa-lg fa-fw fa-eye'></i>
+                            </button>
+                        </a>
+                        <a href='$editar'>
+                            <button class='btn btn-xs btn-default text-primary mx-1 shadow' title='Editar'>
+                                <i class='fa fa-lg fa-fw fa-pen'></i>
+                            </button>
+                        </a>
+                        <form action='$apagar' method='post'>
+                            <button class='btn btn-xs btn-default text-danger mx-1 shadow' title='Apagar' type='submit'>
+                                <i class='fa fa-lg fa-fw fa-trash'></i>
+                            </button>
+                            <input type='hidden' name='_token' value='$token'>
+                        </form></span>"
                 ];
             }
             $config = [

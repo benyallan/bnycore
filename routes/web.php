@@ -30,6 +30,11 @@ Route::prefix('administrador')->group(function () {
     Route::middleware(['auth:administrador'])->group(function () {
         Route::get('/funcionarios', [DashboardController::class, 'funcionariosIndex'])->name('funcionarios');
         Route::get('/funcionarios/novo', [DashboardController::class, 'create'])->name('funcionarios.novo');
+        Route::post('/funcionarios/novo', [DashboardController::class, 'store'])->name('funcionarios.salvar');
+        Route::get('/funcionarios/ver/{id}', [DashboardController::class, 'show'])->name('funcionarios.ver');
+        Route::get('/funcionarios/editar/{id}', [DashboardController::class, 'edit'])->name('funcionarios.editar');
+        Route::post('/funcionarios/editar/{id}', [DashboardController::class, 'update'])->name('funcionarios.atualizar');
+        Route::post('/funcionarios/apagar/{id}', [DashboardController::class, 'destroy'])->name('funcionarios.apagar');
 
         Route::get('/clientes', [ClienteController::class, 'Index']);
         Route::get('/funcoes', [RoleController::class, 'Index'])->name('roles.index');
