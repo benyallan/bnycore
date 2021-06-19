@@ -247,7 +247,7 @@ return [
             'icon' => 'fas fa-users',
             'submenu' => [
                 [
-                    'text'   => 'Funcionários' ,
+                    'text'   => 'Colaboradores' ,
                      'route' => 'funcionarios' ,
                      'icon'   => 'fas fa-fw fa-id-card' ,
                 ],
