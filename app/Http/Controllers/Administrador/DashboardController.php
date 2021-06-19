@@ -133,7 +133,7 @@ class DashboardController extends Controller
         $funcionario->assignRole($request->input('roles'));
 
         return redirect()->route('funcionarios')
-                        ->with('success','funcionario atualizado com sucesso!');
+                        ->with('success','Colaborador atualizado com sucesso!');
     }
 
     /**
@@ -146,6 +146,6 @@ class DashboardController extends Controller
     {
         Administrador::find($id)->delete();
         return redirect()->route('funcionarios')
-                        ->with('success','Funcionário apagado com sucesso!');
+                        ->with('success','Colaborador apagado com sucesso!');
     }
 }

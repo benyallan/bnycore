@@ -9,7 +9,7 @@
 </div>
     @php
         $heads = [
-            'função',
+            'funções',
         ];
 
         if (!empty(Arr::first($funcionarioRole))) {

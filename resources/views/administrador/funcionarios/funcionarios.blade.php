@@ -56,7 +56,7 @@
 
         <div class="container m-1 text-right">
             <a href="{{ route('funcionarios.novo') }}">
-                <x-adminlte-button label="Adicionar funcionário" theme="primary" icon="fas fa-user-plus"/>
+                <x-adminlte-button label="Adicionar colaborador" theme="primary" icon="fas fa-user-plus"/>
             </a>
         </div>
 
