@@ -28,30 +28,104 @@ Route::multiauth('Administrador', 'administrador');
 
 Route::prefix('administrador')->group(function () {
     Route::middleware(['auth:administrador'])->group(function () {
-        Route::get('/funcionarios', [DashboardController::class, 'funcionariosIndex'])->name('funcionarios');
-        Route::get('/funcionarios/novo', [DashboardController::class, 'create'])->name('funcionarios.novo');
-        Route::post('/funcionarios/novo', [DashboardController::class, 'store'])->name('funcionarios.salvar');
-        Route::get('/funcionarios/ver/{id}', [DashboardController::class, 'show'])->name('funcionarios.ver');
-        Route::get('/funcionarios/editar/{id}', [DashboardController::class, 'edit'])->name('funcionarios.editar');
-        Route::post('/funcionarios/editar/{id}', [DashboardController::class, 'update'])->name('funcionarios.atualizar');
-        Route::post('/funcionarios/apagar/{id}', [DashboardController::class, 'destroy'])->name('funcionarios.apagar');
-        Route::get('/funcionarios/mudarsenha', [DashboardController::class, 'mudarSenha'])->name('funcionarios.mudarSenha');
-        Route::post('/funcionarios/mudarsenha/{id}', [DashboardController::class, 'updateSenha'])->name('funcionarios.atualizarSenha');
 
-        Route::get('/clientes', [ClienteController::class, 'Index'])->name('clientes');
-        Route::get('/clientes/novo', [ClienteController::class, 'create'])->name('clientes.criar');
-        Route::post('/clientes/novo', [ClienteController::class, 'store'])->name('clientes.salvar');
-        Route::get('/clientes/ver/{id}', [ClienteController::class, 'show'])->name('clientes.ver');
-        Route::get('/clientes/editar/{id}', [ClienteController::class, 'edit'])->name('clientes.editar');
-        Route::post('/clientes/editar/{id}', [ClienteController::class, 'update'])->name('clientes.atualizar');
-        Route::post('/clientes/apagar/{id}', [ClienteController::class, 'destroy'])->name('clientes.apagar');
+        Route::prefix('funcionarios')->group(function (){
+            Route::get('/', [DashboardController::class, 'funcionariosIndex'])
+                ->name('funcionarios')
+                ->middleware('permission:listar funcionários');
 
-        Route::get('/funcoes', [RoleController::class, 'Index'])->name('roles.index');
-        Route::get('/funcoes/nova', [RoleController::class, 'create'])->name('roles.create');
-        Route::post('/funcoes/nova', [RoleController::class, 'store'])->name('roles.store');
-        Route::get('/funcoes/ver/{id}', [RoleController::class, 'show'])->name('roles.show');
-        Route::get('/funcoes/editar/{id}', [RoleController::class, 'edit'])->name('roles.editar');
-        Route::post('/funcoes/editar/{id}', [RoleController::class, 'update'])->name('roles.alterar');
-        Route::post('/funcoes/apagar/{id}', [RoleController::class, 'destroy'])->name('roles.apagar');
+            Route::get('/novo', [DashboardController::class, 'create'])
+                ->name('funcionarios.novo')
+                ->middleware('permission:criar funcionários');
+
+            Route::post('/novo', [DashboardController::class, 'store'])
+                ->name('funcionarios.salvar')
+                ->middleware('permission:criar funcionários');
+
+            Route::get('/ver/{id}', [DashboardController::class, 'show'])
+                ->name('funcionarios.ver')
+                ->middleware('permission:listar funcionários');
+
+            Route::get('/editar/{id}', [DashboardController::class, 'edit'])
+                ->name('funcionarios.editar')
+                ->middleware('permission:editar funcionários');
+
+            Route::post('/editar/{id}', [DashboardController::class, 'update'])
+                ->name('funcionarios.atualizar')
+                ->middleware('permission:editar funcionários');
+
+            Route::post('/apagar/{id}', [DashboardController::class, 'destroy'])
+                ->name('funcionarios.apagar')
+                ->middleware('permission:apagar funcionários');
+
+            Route::get('/mudarsenha', [DashboardController::class, 'mudarSenha'])
+                ->name('funcionarios.mudarSenha');
+
+            Route::post('/mudarsenha/{id}', [DashboardController::class, 'updateSenha'])
+                ->name('funcionarios.atualizarSenha');
+        });
+
+
+        Route::prefix('clientes')->group(function () {
+            Route::get('/', [ClienteController::class, 'Index'])
+                ->name('clientes')
+                ->middleware('permission:listar clientes');
+
+            Route::get('/novo', [ClienteController::class, 'create'])
+                ->name('clientes.criar')
+                ->middleware('permission:criar clientes');
+
+            Route::post('/novo', [ClienteController::class, 'store'])
+                ->name('clientes.salvar')
+                ->middleware('permission:criar clientes');
+
+            Route::get('/ver/{id}', [ClienteController::class, 'show'])
+                ->name('clientes.ver')
+                ->middleware('permission:listar clientes');
+
+            Route::get('/editar/{id}', [ClienteController::class, 'edit'])
+                ->name('clientes.editar')
+                ->middleware('permission:editar clientes');
+
+            Route::post('/editar/{id}', [ClienteController::class, 'update'])
+                ->name('clientes.atualizar')
+                ->middleware('permission:editar clientes');
+
+            Route::post('/apagar/{id}', [ClienteController::class, 'destroy'])
+                ->name('clientes.apagar')
+                ->middleware('permission:apagar clientes');
+        });
+
+        Route::prefix('funcoes')->group(function ()
+        {
+            Route::get('/', [RoleController::class, 'Index'])
+                ->name('roles.index')
+                ->middleware('permission:listar funções');
+
+            Route::get('/nova', [RoleController::class, 'create'])
+                ->name('roles.create')
+                ->middleware('permission:criar funções');
+
+            Route::post('/nova', [RoleController::class, 'store'])
+                ->name('roles.store')
+                ->middleware('permission:criar funções');
+
+            Route::get('/ver/{id}', [RoleController::class, 'show'])
+                ->name('roles.show')
+                ->middleware('permission:listar funções');
+
+            Route::get('/editar/{id}', [RoleController::class, 'edit'])
+                ->name('roles.editar')
+                ->middleware('permission:editar funções');
+
+            Route::post('/editar/{id}', [RoleController::class, 'update'])
+                ->name('roles.alterar')
+                ->middleware('permission:editar funções');
+
+            Route::post('/apagar/{id}', [RoleController::class, 'destroy'])
+                ->name('roles.apagar')
+                ->middleware('permission:apagar funções');
+        });
+
     });
 });

@@ -54,11 +54,14 @@
             ];
         @endphp
 
-        <div class="container m-1 text-right">
-            <a href="{{ route('funcionarios.novo') }}">
-                <x-adminlte-button label="Adicionar colaborador" theme="primary" icon="fas fa-user-plus"/>
-            </a>
-        </div>
+        @can('criar funcionários')
+            <div class="container m-1 text-right">
+                <a href="{{ route('funcionarios.novo') }}">
+                    <x-adminlte-button label="Adicionar colaborador" theme="primary" icon="fas fa-user-plus"/>
+                </a>
+            </div>
+        @endcan
+
 
         {{-- Dados de exemplo / preenchimento mínimos usando o slot de componente --}}
         <x-adminlte-datatable id="table1" :heads="$heads" head-theme="dark" theme="light" striped hoverable with-buttons>

@@ -250,11 +250,13 @@ return [
                     'text'   => 'Colaboradores' ,
                      'route' => 'funcionarios' ,
                      'icon'   => 'fas fa-fw fa-id-card' ,
+                     'can' => 'listar funcionários'
                 ],
                 [
                     'text'   => 'Funções' ,
                      'route' => 'roles.index' ,
                      'icon'   => 'fas fa-briefcase' ,
+                     'can' => 'listar funções'
                 ],
             ],
         ],
@@ -262,7 +264,8 @@ return [
         [
             'text' => 'Clientes',
             'url' => 'administrador/clientes',
-            'icon' => 'fas fa-fw fa-address-book'
+            'icon' => 'fas fa-fw fa-address-book',
+            'can' => 'listar clientes'
         ],
 
         ['header' => 'account_settings'],

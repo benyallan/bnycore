@@ -11,16 +11,6 @@
                 ['label' => 'Ações', 'no-export' => true, 'width' => 5],
             ];
 
-            $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                            <i class="fa fa-lg fa-fw fa-pen"></i>
-                        </button>';
-            $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Apagar">
-                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                        </button>';
-            $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalhes">
-                            <i class="fa fa-lg fa-fw fa-eye"></i>
-                        </button>';
-
             if (!empty(Arr::first($clientes))) {
                 foreach ($clientes as $cliente) {
                     $token = csrf_token();
@@ -62,12 +52,13 @@
                 ];
             }
         @endphp
-
-        <div class="container m-1 text-right">
-            <a href="{{ route('clientes.criar') }}">
-                <x-adminlte-button label="Adicionar cliente" theme="primary" icon="fas fa-user-plus"/>
-            </a>
-        </div>
+        @can('criar clientes')
+            <div class="container m-1 text-right">
+                <a href="{{ route('clientes.criar') }}">
+                    <x-adminlte-button label="Adicionar cliente" theme="primary" icon="fas fa-user-plus"/>
+                </a>
+            </div>
+        @endcan
 
         {{-- Dados de exemplo / preenchimento mínimos usando o slot de componente --}}
         <x-adminlte-datatable id="table1" :heads="$heads" head-theme="dark" theme="light" striped hoverable with-buttons>
