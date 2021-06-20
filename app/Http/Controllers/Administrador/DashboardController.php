@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -137,6 +138,34 @@ class DashboardController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateSenha(Request $request, $id)
+    {
+        $this->validate($request, [
+            'password' => 'same:confirm-password',
+        ]);
+
+        $colaborador = Administrador::find($id);
+        $input = $request->all();
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            return redirect('/administrador/dashboard')
+                ->with('danger','Senha não alterada!');
+        }
+
+        $colaborador->update($input);
+
+        return redirect('/administrador/dashboard')
+                        ->with('success','Senha atualizada com sucesso!');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -147,5 +176,17 @@ class DashboardController extends Controller
         Administrador::find($id)->delete();
         return redirect()->route('funcionarios')
                         ->with('success','Colaborador apagado com sucesso!');
+    }
+
+
+    /**
+     * Altera a senha do usuário logado.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function mudarSenha()
+    {
+        $colaborador = Administrador::find(Auth::user()->id);
+        return view('administrador.mudarsenha',compact('colaborador'));
     }
 }

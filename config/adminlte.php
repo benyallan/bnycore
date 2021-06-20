@@ -269,7 +269,7 @@ return [
 
         [
             'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'route'  => 'funcionarios.mudarSenha',
             'icon' => 'fas fa-fw fa-lock',
         ],
 

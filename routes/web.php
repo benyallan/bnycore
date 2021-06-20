@@ -35,6 +35,8 @@ Route::prefix('administrador')->group(function () {
         Route::get('/funcionarios/editar/{id}', [DashboardController::class, 'edit'])->name('funcionarios.editar');
         Route::post('/funcionarios/editar/{id}', [DashboardController::class, 'update'])->name('funcionarios.atualizar');
         Route::post('/funcionarios/apagar/{id}', [DashboardController::class, 'destroy'])->name('funcionarios.apagar');
+        Route::get('/funcionarios/mudarsenha', [DashboardController::class, 'mudarSenha'])->name('funcionarios.mudarSenha');
+        Route::post('/funcionarios/mudarsenha/{id}', [DashboardController::class, 'updateSenha'])->name('funcionarios.atualizarSenha');
 
         Route::get('/clientes', [ClienteController::class, 'Index'])->name('clientes');
         Route::get('/clientes/novo', [ClienteController::class, 'create'])->name('clientes.criar');
